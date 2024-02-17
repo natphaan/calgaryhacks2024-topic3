@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bklnugusfyjko"]
+
+[node name="world" type="Node2D"]
