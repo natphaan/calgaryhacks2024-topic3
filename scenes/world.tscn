@@ -620,7 +620,7 @@ layer_2/tile_data = PackedInt32Array(-458753, 65536, 4, -393217, 65536, 5, -3276
 
 [node name="player" parent="." instance=ExtResource("7_t2faq")]
 y_sort_enabled = false
-position = Vector2(-7, -2)
+position = Vector2(-126, 67)
 
 [node name="Slime" parent="." instance=ExtResource("10_72m00")]
-position = Vector2(-62, -8)
+position = Vector2(-246, -7)

@@ -5,7 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_11kox"]
 script/source = "extends CharacterBody2D
 
-var speed = 25
+var speed = 200
 var player_chase = false
 var player = null
 var health = 100
@@ -206,7 +206,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vqc1"]
-radius = 86.977
+radius = 58.2151
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itpw6"]
 radius = 6.08276
