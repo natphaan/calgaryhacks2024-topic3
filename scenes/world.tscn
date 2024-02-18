@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bklnugusfyjko"]
+[gd_scene load_steps=23 format=3 uid="uid://bklnugusfyjko"]
 
 [ext_resource type="Texture2D" uid="uid://sn1gdrj6tnrc" path="res://art/sprites/tilesets/plains.png" id="1_dncqs"]
 [ext_resource type="Texture2D" uid="uid://cuai2522dccmf" path="res://art/sprites/tilesets/grass.png" id="2_88a74"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8757t5ugbhp" path="res://scenes/player.tscn" id="7_t2faq"]
 [ext_resource type="Texture2D" uid="uid://dj81bl28m6phm" path="res://art/sprites/tilesets/decor_8x8.png" id="8_r7kd8"]
 [ext_resource type="PackedScene" uid="uid://buauhju6yevue" path="res://scenes/slime.tscn" id="10_72m00"]
+[ext_resource type="PackedScene" uid="uid://cadn8kk3h72mm" path="res://skel.tscn" id="11_wyh0v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eelxr"]
 texture = ExtResource("1_dncqs")
@@ -629,3 +630,6 @@ position = Vector2(-333, -40)
 
 [node name="Slime2" parent="." instance=ExtResource("10_72m00")]
 position = Vector2(-244, -42)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_wyh0v")]
+position = Vector2(-4, -1)
