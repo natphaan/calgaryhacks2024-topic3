@@ -1,9 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://cp8757t5ugbhp"]
+[gd_scene load_steps=57 format=3 uid="uid://cp8757t5ugbhp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0hs2g"]
 [ext_resource type="Texture2D" uid="uid://d4ik8wk05gtpo" path="res://art/sprites/characters/player.png" id="2_56x40"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tucai"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qirkn"]
 atlas = ExtResource("2_56x40")
@@ -415,18 +413,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tucai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_384di"]
+radius = 13.0
+
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 3
 script = ExtResource("1_0hs2g")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -10)
+sprite_frames = SubResource("SpriteFrames_5qeug")
+animation = &"front_idle"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tucai")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
-position = Vector2(-1, -10)
-sprite_frames = SubResource("SpriteFrames_5qeug")
-animation = &"side_idle"
-frame_progress = 0.821514
-
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CircleShape2D_384di")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="deal_attack_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

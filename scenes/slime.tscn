@@ -1,7 +1,65 @@
-[gd_scene load_steps=24 format=3 uid="uid://buauhju6yevue"]
+[gd_scene load_steps=25 format=3 uid="uid://buauhju6yevue"]
 
-[ext_resource type="Script" path="res://slime.gd" id="1_6qqcu"]
 [ext_resource type="Texture2D" uid="uid://cdn70gyycuuw4" path="res://art/sprites/characters/slime.png" id="1_ct0r0"]
+
+[sub_resource type="GDScript" id="GDScript_11kox"]
+script/source = "extends CharacterBody2D
+
+var speed = 25
+var player_chase = false
+var player = null
+var health = 100
+var player_inattack_zone = false
+var can_take_damage = true
+
+
+func _physics_process(delta):
+	deal_with_damage()
+	if player_chase:
+		position += (player.position - position)/speed
+		
+		$AnimatedSprite2D.play(\"walk\")
+	else:
+		$AnimatedSprite2D.play(\"idle\")
+
+
+func _on_detection_area_body_entered(body):
+	player = body
+	player_chase = true
+
+func _on_detection_area_body_exited(body):
+	player = null
+	player_chase = false
+	
+	
+func slime():
+	pass
+
+
+func _on_slime_hitbox_body_entered(body):
+	if body.has_method(\"player\"):
+		player_inattack_zone = true
+		
+
+
+func _on_slime_hitbox_body_exited(body):
+	if body.has_method(\"player\"):
+		player_inattack_zone = false
+
+func deal_with_damage():
+	if player_inattack_zone and Global.player_current_attack == true:
+		if can_take_damage == true:
+			health = health - 20
+			$take_damage_cooldown.start()
+			can_take_damage = false
+			print(\"slime health = \", health)
+			if health <= 0:
+				self.queue_free()
+
+
+func _on_take_damage_cooldown_timeout():
+	can_take_damage = true
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yno0j"]
 atlas = ExtResource("1_ct0r0")
@@ -153,8 +211,11 @@ radius = 86.977
 [sub_resource type="CircleShape2D" id="CircleShape2D_itpw6"]
 radius = 6.08276
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gxl6"]
+radius = 16.1245
+
 [node name="Slime" type="CharacterBody2D"]
-script = ExtResource("1_6qqcu")
+script = SubResource("GDScript_11kox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v3tbd")
@@ -171,5 +232,16 @@ shape = SubResource("CircleShape2D_0vqc1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_itpw6")
 
+[node name="slime_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slime_hitbox"]
+shape = SubResource("CircleShape2D_4gxl6")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="slime_hitbox" to="." method="_on_slime_hitbox_body_entered"]
+[connection signal="body_exited" from="slime_hitbox" to="." method="_on_slime_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
