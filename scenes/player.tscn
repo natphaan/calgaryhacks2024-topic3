@@ -420,5 +420,5 @@ script = ExtResource("1_0hs2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
 sprite_frames = SubResource("SpriteFrames_5qeug")
-animation = &"back_walk"
-frame_progress = 0.587708
+animation = &"side_idle"
+frame_progress = 0.934929
