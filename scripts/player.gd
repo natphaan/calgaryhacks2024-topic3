@@ -66,3 +66,4 @@ func play_animation(movement):
 			anim.play("back_walk")
 		elif movement == 0:
 			anim.play("back_idle")
+			
