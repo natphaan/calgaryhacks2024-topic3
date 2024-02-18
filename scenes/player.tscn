@@ -422,3 +422,5 @@ script = ExtResource("1_0hs2g")
 sprite_frames = SubResource("SpriteFrames_5qeug")
 animation = &"back_walk"
 frame_progress = 0.0244493
+
+[node name="Camera2D" type="Camera2D" parent="."]
