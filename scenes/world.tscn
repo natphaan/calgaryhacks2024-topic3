@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dkf8eaouujddk" path="res://art/sprites/tilesets/walls/wooden_door_b.png" id="7_8dj3y"]
 [ext_resource type="PackedScene" uid="uid://cp8757t5ugbhp" path="res://scenes/player.tscn" id="7_t2faq"]
 [ext_resource type="Texture2D" uid="uid://dj81bl28m6phm" path="res://art/sprites/tilesets/decor_8x8.png" id="8_r7kd8"]
-[ext_resource type="PackedScene" uid="uid://buauhju6yevue" path="res://slime.tscn" id="10_j01eu"]
+[ext_resource type="PackedScene" uid="uid://buauhju6yevue" path="res://slime.tscn" id="10_72m00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eelxr"]
 texture = ExtResource("1_dncqs")
@@ -622,5 +622,5 @@ layer_2/tile_data = PackedInt32Array(-458753, 65536, 4, -393217, 65536, 5, -3276
 y_sort_enabled = false
 position = Vector2(-7, -2)
 
-[node name="slime" parent="." instance=ExtResource("10_j01eu")]
-position = Vector2(-224, 22)
+[node name="Slime" parent="." instance=ExtResource("10_72m00")]
+position = Vector2(-55, -4)
