@@ -1,7 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://cp8757t5ugbhp"]
+[gd_scene load_steps=56 format=3 uid="uid://cp8757t5ugbhp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0hs2g"]
 [ext_resource type="Texture2D" uid="uid://d4ik8wk05gtpo" path="res://art/sprites/characters/player.png" id="2_56x40"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tucai"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qirkn"]
 atlas = ExtResource("2_56x40")
@@ -414,13 +416,16 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_0hs2g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tucai")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_5qeug")
-animation = &"back_walk"
-frame_progress = 0.0244493
+animation = &"side_idle"
+frame_progress = 0.821514
 
 [node name="Camera2D" type="Camera2D" parent="."]
